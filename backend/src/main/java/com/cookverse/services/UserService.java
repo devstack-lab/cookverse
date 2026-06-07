@@ -36,16 +36,7 @@ public class UserService {
             throw new IllegalArgumentException("Email is already in use");
         }
 
-        String rawRole = request.getRole();
         String role = "ROLE_USER";
-        if (rawRole != null && !rawRole.trim().isEmpty()) {
-            String upperRole = rawRole.toUpperCase().trim();
-            if (upperRole.startsWith("ROLE_")) {
-                role = upperRole;
-            } else {
-                role = "ROLE_" + upperRole;
-            }
-        }
 
         User user = User.builder()
                 .name(request.getName())

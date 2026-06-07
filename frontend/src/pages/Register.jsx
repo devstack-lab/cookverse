@@ -8,7 +8,6 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('ROLE_USER');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
@@ -41,7 +40,7 @@ const Register = () => {
     
     setLoading(true);
     try {
-      await register(name, email, password, confirmPassword, role);
+      await register(name, email, password, confirmPassword);
       setSuccess('Registration successful! Redirecting to login...');
       setTimeout(() => {
         navigate('/login');
@@ -176,20 +175,6 @@ const Register = () => {
               </div>
             </div>
 
-            <div>
-              <label htmlFor="role" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
-                Account Type
-              </label>
-              <select
-                id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="mt-1.5 block w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-slate-900 focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-amber-500 dark:border-slate-800 dark:bg-slate-950 dark:text-white dark:focus:bg-slate-900 transition-colors duration-200"
-              >
-                <option value="ROLE_USER">User (Discover & Submit Recipes)</option>
-                <option value="ROLE_ADMIN">Admin (Manage Portal & System AI)</option>
-              </select>
-            </div>
           </div>
 
           <div>

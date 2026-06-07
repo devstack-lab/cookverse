@@ -22,5 +22,5 @@ public class RegisterRequest {
     @NotBlank(message = "Confirm password is required")
     private String confirmPassword;
 
-    private String role; // "ROLE_USER" or "ROLE_ADMIN" (defaults to ROLE_USER)
+    // New public registrations are always created as standard users.
 }

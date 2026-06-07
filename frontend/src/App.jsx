@@ -7,6 +7,15 @@ import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Details from './pages/Details';
+import Favorites from './pages/Favorites';
+import RecipeForm from './pages/RecipeForm';
+import MyRecipes from './pages/MyRecipes';
+import Profile from './pages/Profile';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminRecipes from './pages/AdminRecipes';
 
 function App() {
   return (
@@ -21,33 +30,9 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 
-                {/* Stubs to be populated in Step 5, 6, and 7 */}
-                <Route path="/" element={
-                  <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                    <div className="text-center">
-                      <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Home Page Stub</h2>
-                      <p className="mt-2 text-slate-500">CookVerse Discovery Home Screen is coming up next.</p>
-                    </div>
-                  </div>
-                } />
-                
-                <Route path="/search" element={
-                  <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                    <div className="text-center">
-                      <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Search & Explore Stub</h2>
-                      <p className="mt-2 text-slate-500">Search page functionality will be wired in Step 5.</p>
-                    </div>
-                  </div>
-                } />
-                
-                <Route path="/recipe/:id" element={
-                  <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                    <div className="text-center">
-                      <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Recipe Details Stub</h2>
-                      <p className="mt-2 text-slate-500">View detailed preparation steps and cooking guides.</p>
-                    </div>
-                  </div>
-                } />
+                <Route path="/" element={<Home />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/recipe/:id" element={<Details />} />
 
                 {/* User Protected Routes */}
                 <Route path="/generate-ai" element={
@@ -63,68 +48,44 @@ function App() {
                 
                 <Route path="/favorites" element={
                   <PrivateRoute>
-                    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                      <div className="text-center">
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">My Favorites</h2>
-                        <p className="mt-2 text-slate-500">View bookmarked community and AI recipes.</p>
-                      </div>
-                    </div>
+                    <Favorites />
                   </PrivateRoute>
                 } />
                 
                 <Route path="/add-recipe" element={
                   <PrivateRoute>
-                    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                      <div className="text-center">
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Add Recipe Form</h2>
-                        <p className="mt-2 text-slate-500">Submit manual recipe with image attachment.</p>
-                      </div>
-                    </div>
+                    <RecipeForm />
+                  </PrivateRoute>
+                } />
+
+                <Route path="/edit-recipe/:id" element={
+                  <PrivateRoute>
+                    <RecipeForm />
                   </PrivateRoute>
                 } />
                 
                 <Route path="/my-recipes" element={
                   <PrivateRoute>
-                    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                      <div className="text-center">
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">My Uploaded Recipes</h2>
-                        <p className="mt-2 text-slate-500">Manage, edit, or delete recipes you authored.</p>
-                      </div>
-                    </div>
+                    <MyRecipes />
                   </PrivateRoute>
                 } />
                 
                 <Route path="/profile" element={
                   <PrivateRoute>
-                    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                      <div className="text-center">
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">User Profile</h2>
-                        <p className="mt-2 text-slate-500">Update account credentials and view personal cook stats.</p>
-                      </div>
-                    </div>
+                    <Profile />
                   </PrivateRoute>
                 } />
 
                 {/* Admin Protected Routes */}
                 <Route path="/admin/dashboard" element={
                   <PrivateRoute adminOnly>
-                    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                      <div className="text-center">
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Admin Dashboard</h2>
-                        <p className="mt-2 text-slate-500">Visual database stats and operations analytics (Step 7).</p>
-                      </div>
-                    </div>
+                    <AdminDashboard />
                   </PrivateRoute>
                 } />
                 
                 <Route path="/admin/recipes" element={
                   <PrivateRoute adminOnly>
-                    <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-                      <div className="text-center">
-                        <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Admin Recipe Management</h2>
-                        <p className="mt-2 text-slate-500">Search and force remove database content entries.</p>
-                      </div>
-                    </div>
+                    <AdminRecipes />
                   </PrivateRoute>
                 } />
               </Routes>

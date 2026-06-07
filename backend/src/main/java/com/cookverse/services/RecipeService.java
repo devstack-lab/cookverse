@@ -98,6 +98,7 @@ public class RecipeService {
             throw new SecurityException("You are not authorized to delete this recipe");
         }
 
+        favoriteRepository.deleteByRecipeId(id);
         recipeRepository.delete(recipe);
     }
 
